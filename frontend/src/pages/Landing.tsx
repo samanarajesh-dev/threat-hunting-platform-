@@ -48,7 +48,7 @@ export default function Landing() {
         <div className="landing-brand">
           <svg className="landing-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="16" cy="16" r="14" stroke="#ffffff" strokeWidth="2.5" />
-            <polygon points="16,6 24,22 8,22" stroke="#3b82f6" strokeWidth="2" fill="none" />
+            <polygon points="16,6 24,22 8,22" stroke="#10b981" strokeWidth="2" fill="none" />
             <circle cx="16" cy="17" r="3" fill="#ff5d6c" />
           </svg>
           <span className="brand-text">THREAT-HUNTING</span>
@@ -105,15 +105,15 @@ export default function Landing() {
           <svg className="cyber-scene" viewBox="0 0 500 500">
             <defs>
               <radialGradient id="sphereGrad1" cx="35%" cy="35%" r="65%">
-                <stop offset="0%" stopColor="#80b5ff" />
-                <stop offset="45%" stopColor="#2563eb" />
-                <stop offset="100%" stopColor="#081028" />
+                <stop offset="0%" stopColor="#6ee7b7" />
+                <stop offset="45%" stopColor="#059669" />
+                <stop offset="100%" stopColor="#04120a" />
               </radialGradient>
               <radialGradient id="sphereGrad2" cx="30%" cy="30%" r="70%">
                 <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="25%" stopColor="#93c5fd" />
-                <stop offset="70%" stopColor="#1e3a8a" />
-                <stop offset="100%" stopColor="#030712" />
+                <stop offset="25%" stopColor="#34d399" />
+                <stop offset="70%" stopColor="#064e3b" />
+                <stop offset="100%" stopColor="#020905" />
               </radialGradient>
               <radialGradient id="redGlow" cx="40%" cy="40%" r="60%">
                 <stop offset="0%" stopColor="#ff99a4" />
@@ -130,7 +130,7 @@ export default function Landing() {
             </defs>
 
             {/* Connecting Lattice Lines */}
-            <g stroke="#3b82f6" strokeWidth="1" opacity="0.45">
+            <g stroke="#10b981" strokeWidth="1" opacity="0.45">
               <line x1="250" y1="250" x2="160" y2="180" />
               <line x1="250" y1="250" x2="340" y2="170" />
               <line x1="250" y1="250" x2="380" y2="290" />
@@ -145,9 +145,9 @@ export default function Landing() {
             </g>
 
             {/* Central Dark Faceted Core Cube */}
-            <polygon points="250,170 330,215 250,265 170,215" fill="#141c2e" stroke="#2563eb" strokeWidth="1.5" />
-            <polygon points="170,215 250,265 250,355 170,305" fill="#0c1220" stroke="#1d4ed8" strokeWidth="1.5" />
-            <polygon points="330,215 250,265 250,355 330,305" fill="#0a0e18" stroke="#1e40af" strokeWidth="1.5" />
+            <polygon points="250,170 330,215 250,265 170,215" fill="#0d1424" stroke="#10b981" strokeWidth="1.5" />
+            <polygon points="170,215 250,265 250,355 170,305" fill="#080e1c" stroke="#059669" strokeWidth="1.5" />
+            <polygon points="330,215 250,265 250,355 330,305" fill="#060a14" stroke="#047857" strokeWidth="1.5" />
 
             {/* Floating Glossy Telemetry Spheres */}
             <circle cx="250" cy="100" r="24" fill="url(#sphereGrad2)" />
@@ -161,11 +161,11 @@ export default function Landing() {
             <circle cx="340" cy="245" r="8" fill="url(#redGlow)" filter="url(#laserGlow)" />
             <circle cx="195" cy="310" r="7" fill="url(#redGlow)" filter="url(#laserGlow)" />
             <circle cx="215" cy="140" r="9" fill="url(#sphereGrad2)" filter="url(#laserGlow)" />
-            <circle cx="370" cy="130" r="6" fill="#60a5fa" filter="url(#laserGlow)" />
+            <circle cx="370" cy="130" r="6" fill="#34d399" filter="url(#laserGlow)" />
 
             {/* High Power Laser Beams in SVG */}
-            <line x1="250" y1="0" x2="250" y2="500" stroke="#60a5fa" strokeWidth="3" filter="url(#laserGlow)" />
-            <line x1="0" y1="360" x2="500" y2="180" stroke="#3b82f6" strokeWidth="2" filter="url(#laserGlow)" opacity="0.8" />
+            <line x1="250" y1="0" x2="250" y2="500" stroke="#10b981" strokeWidth="3" filter="url(#laserGlow)" />
+            <line x1="0" y1="360" x2="500" y2="180" stroke="#10b981" strokeWidth="2" filter="url(#laserGlow)" opacity="0.8" />
           </svg>
         </div>
       </section>
