@@ -48,8 +48,8 @@ export default function Landing() {
         <div className="landing-brand">
           <svg className="landing-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="16" cy="16" r="14" stroke="#ffffff" strokeWidth="2.5" />
-            <polygon points="16,6 24,22 8,22" stroke="#10b981" strokeWidth="2" fill="none" />
-            <circle cx="16" cy="17" r="3" fill="#ff5d6c" />
+            <polygon points="16,6 24,22 8,22" stroke="#38bdf8" strokeWidth="2" fill="none" />
+            <circle cx="16" cy="17" r="3" fill="#6366f1" />
           </svg>
           <span className="brand-text">THREAT-HUNTING</span>
         </div>
@@ -62,7 +62,7 @@ export default function Landing() {
           <a href="#contact-us">Contact Us</a>
         </nav>
 
-        {/* Right actions: Talk to sales removed */}
+        {/* Right actions */}
         <div className="landing-actions">
           <button className="link-action" onClick={() => setShowLogin(true)}>Report an incident</button>
           <button className="icon-search-btn" aria-label="Search" onClick={() => setShowLogin(true)}>
@@ -77,7 +77,7 @@ export default function Landing() {
         </div>
       </header>
 
-      {/* 2. Hero Section: Talk to sales removed */}
+      {/* 2. Hero Section */}
       <section className="landing-hero">
         <div className="hero-content">
           <p className="hero-kicker">Cybersecurity Products and Services</p>
@@ -105,15 +105,20 @@ export default function Landing() {
           <svg className="cyber-scene" viewBox="0 0 500 500">
             <defs>
               <radialGradient id="sphereGrad1" cx="35%" cy="35%" r="65%">
-                <stop offset="0%" stopColor="#6ee7b7" />
-                <stop offset="45%" stopColor="#059669" />
-                <stop offset="100%" stopColor="#04120a" />
+                <stop offset="0%" stopColor="#7dd3fc" />
+                <stop offset="45%" stopColor="#0284c7" />
+                <stop offset="100%" stopColor="#050e24" />
               </radialGradient>
               <radialGradient id="sphereGrad2" cx="30%" cy="30%" r="70%">
                 <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="25%" stopColor="#34d399" />
-                <stop offset="70%" stopColor="#064e3b" />
-                <stop offset="100%" stopColor="#020905" />
+                <stop offset="25%" stopColor="#38bdf8" />
+                <stop offset="70%" stopColor="#1e3a8a" />
+                <stop offset="100%" stopColor="#060b1c" />
+              </radialGradient>
+              <radialGradient id="indigoGrad" cx="35%" cy="35%" r="65%">
+                <stop offset="0%" stopColor="#c7d2fe" />
+                <stop offset="50%" stopColor="#6366f1" />
+                <stop offset="100%" stopColor="#1e1b4b" />
               </radialGradient>
               <radialGradient id="redGlow" cx="40%" cy="40%" r="60%">
                 <stop offset="0%" stopColor="#ff99a4" />
@@ -130,7 +135,7 @@ export default function Landing() {
             </defs>
 
             {/* Connecting Lattice Lines */}
-            <g stroke="#10b981" strokeWidth="1" opacity="0.45">
+            <g stroke="#38bdf8" strokeWidth="1" opacity="0.38">
               <line x1="250" y1="250" x2="160" y2="180" />
               <line x1="250" y1="250" x2="340" y2="170" />
               <line x1="250" y1="250" x2="380" y2="290" />
@@ -145,27 +150,27 @@ export default function Landing() {
             </g>
 
             {/* Central Dark Faceted Core Cube */}
-            <polygon points="250,170 330,215 250,265 170,215" fill="#0d1424" stroke="#10b981" strokeWidth="1.5" />
-            <polygon points="170,215 250,265 250,355 170,305" fill="#080e1c" stroke="#059669" strokeWidth="1.5" />
-            <polygon points="330,215 250,265 250,355 330,305" fill="#060a14" stroke="#047857" strokeWidth="1.5" />
+            <polygon points="250,170 330,215 250,265 170,215" fill="#0f1738" stroke="#38bdf8" strokeWidth="1.5" />
+            <polygon points="170,215 250,265 250,355 170,305" fill="#0a1029" stroke="#6366f1" strokeWidth="1.5" />
+            <polygon points="330,215 250,265 250,355 330,305" fill="#070c20" stroke="#4338ca" strokeWidth="1.5" />
 
             {/* Floating Glossy Telemetry Spheres */}
             <circle cx="250" cy="100" r="24" fill="url(#sphereGrad2)" />
-            <circle cx="160" cy="180" r="18" fill="url(#sphereGrad1)" />
+            <circle cx="160" cy="180" r="18" fill="url(#indigoGrad)" />
             <circle cx="340" cy="170" r="22" fill="url(#sphereGrad2)" />
             <circle cx="380" cy="290" r="26" fill="url(#sphereGrad1)" />
             <circle cx="150" cy="330" r="20" fill="url(#sphereGrad2)" />
-            <circle cx="280" cy="380" r="16" fill="url(#sphereGrad1)" />
+            <circle cx="280" cy="380" r="16" fill="url(#indigoGrad)" />
 
             {/* Glowing Threat & Alert Nodes */}
             <circle cx="340" cy="245" r="8" fill="url(#redGlow)" filter="url(#laserGlow)" />
             <circle cx="195" cy="310" r="7" fill="url(#redGlow)" filter="url(#laserGlow)" />
             <circle cx="215" cy="140" r="9" fill="url(#sphereGrad2)" filter="url(#laserGlow)" />
-            <circle cx="370" cy="130" r="6" fill="#34d399" filter="url(#laserGlow)" />
+            <circle cx="370" cy="130" r="6" fill="#38bdf8" filter="url(#laserGlow)" />
 
             {/* High Power Laser Beams in SVG */}
-            <line x1="250" y1="0" x2="250" y2="500" stroke="#10b981" strokeWidth="3" filter="url(#laserGlow)" />
-            <line x1="0" y1="360" x2="500" y2="180" stroke="#10b981" strokeWidth="2" filter="url(#laserGlow)" opacity="0.8" />
+            <line x1="250" y1="0" x2="250" y2="500" stroke="#38bdf8" strokeWidth="3" filter="url(#laserGlow)" />
+            <line x1="0" y1="360" x2="500" y2="180" stroke="#6366f1" strokeWidth="2.5" filter="url(#laserGlow)" opacity="0.85" />
           </svg>
         </div>
       </section>
@@ -420,7 +425,7 @@ export default function Landing() {
             <div className="contact-form-box">
               {contactSent ? (
                 <div className="contact-success">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#34c48c" strokeWidth="2">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2">
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="9 12 12 15 16 10" />
                   </svg>
