@@ -1,0 +1,18 @@
+[
+  { "input": "8.8.8.8", "is_ioc": true, "type": "ip", "normalized": "8.8.8.8" },
+  { "input": "192.168.1[.]1", "is_ioc": true, "type": "ip", "normalized": "192.168.1.1" },
+  { "input": "2001:db8::1", "is_ioc": true, "type": "ip", "normalized": "2001:db8::1" },
+  { "input": "Evil-Site.COM", "is_ioc": true, "type": "domain", "normalized": "evil-site.com" },
+  { "input": "evil[.]com", "is_ioc": true, "type": "domain", "normalized": "evil.com" },
+  { "input": "evil.com.", "is_ioc": true, "type": "domain", "normalized": "evil.com" },
+  { "input": "hxxp://evil.com/a", "is_ioc": true, "type": "url", "normalized": "http://evil.com/a" },
+  { "input": "https://threat.org/feed", "is_ioc": true, "type": "url", "normalized": "https://threat.org/feed" },
+  { "input": "d41d8cd98f00b204e9800998ecf8427e", "is_ioc": true, "type": "md5", "normalized": "d41d8cd98f00b204e9800998ecf8427e" },
+  { "input": "da39a3ee5e6b4b0d3255bfef95601890afd80709", "is_ioc": true, "type": "sha1", "normalized": "da39a3ee5e6b4b0d3255bfef95601890afd80709" },
+  { "input": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855", "is_ioc": true, "type": "sha256", "normalized": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" },
+  { "input": "event.outcome:failure", "is_ioc": false, "type": null, "normalized": null },
+  { "input": "ssh failed login", "is_ioc": false, "type": null, "normalized": null },
+  { "input": "999.999.1.1", "is_ioc": false, "type": null, "normalized": null },
+  { "input": "-bad-.com", "is_ioc": false, "type": null, "normalized": null },
+  { "input": "not an indicator", "is_ioc": false, "type": null, "normalized": null }
+]

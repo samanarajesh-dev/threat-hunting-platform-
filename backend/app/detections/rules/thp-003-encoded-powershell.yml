@@ -1,0 +1,11 @@
+id: THP-003
+title: PowerShell launched with an encoded command
+description: Encoded PowerShell is a common way to hide malicious script content.
+severity: high
+lookback_minutes: 15
+conditions:
+  - {field: process.name, equals: powershell.exe}
+  - {field: process.command_line, contains_any: ["-enc", "-encodedcommand"]}
+group_by: [host.name, user.name]
+mitre: {tactic: Execution, technique: T1059.001, name: PowerShell}
+tags: [windows, powershell]

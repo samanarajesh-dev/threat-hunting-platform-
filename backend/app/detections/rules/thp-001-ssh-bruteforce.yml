@@ -1,0 +1,12 @@
+id: THP-001
+title: Brute-force login attempts from a single source
+description: Many failed authentications from one IP against one host in a short window.
+severity: medium
+lookback_minutes: 10
+conditions:
+  - {field: event.category, equals: authentication}
+  - {field: event.outcome, equals: failure}
+group_by: [source.ip, host.name]
+threshold: {count: 8}
+mitre: {tactic: Credential Access, technique: T1110.001, name: Password Guessing}
+tags: [authentication, bruteforce]

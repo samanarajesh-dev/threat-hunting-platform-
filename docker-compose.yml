@@ -1,0 +1,81 @@
+name: thp
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "true"
+      xpack.security.http.ssl.enabled: "false"   # DEV ONLY. Enable TLS before exposing this anywhere real.
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      ES_JAVA_OPTS: -Xms1g -Xmx1g
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - "127.0.0.1:9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs -u elastic:$$ELASTIC_PASSWORD http://localhost:9200/_cluster/health >/dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: thp
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: thp
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U thp -d thp"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://thp:${POSTGRES_PASSWORD}@postgres:5432/thp
+      ES_URL: http://elasticsearch:9200
+      ES_USERNAME: elastic
+      ES_PASSWORD: ${ELASTIC_PASSWORD}
+      EVIDENCE_DIR: /data/evidence
+      CORS_ORIGINS: '["http://localhost:3000"]'
+    volumes:
+      - evidence:/data/evidence
+    depends_on:
+      elasticsearch: {condition: service_healthy}
+      postgres: {condition: service_healthy}
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on: [backend]
+    ports:
+      - "127.0.0.1:3000:80"
+
+  # Optional: ship this machine's Linux auth/syslog into the platform.
+  #   docker compose --profile collect up -d filebeat
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${ELASTIC_VERSION}
+    profiles: ["collect"]
+    user: root
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    environment:
+      ES_URL: http://elasticsearch:9200
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      HOST_LABEL: ${HOST_LABEL:-lab-linux}
+    volumes:
+      - ./infra/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/log:/host/var/log:ro
+      - filebeat-data:/usr/share/filebeat/data
+    depends_on: [backend]   # the backend installs the index template + ingest pipeline at startup
+
+volumes:
+  es-data:
+  pg-data:
+  evidence:
+  filebeat-data:

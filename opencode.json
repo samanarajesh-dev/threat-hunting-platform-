@@ -1,0 +1,66 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "plan",
+  "autoupdate": "notify",
+  "snapshot": true,
+  "share": "disabled",
+  "instructions": [
+    "docs/DATA_CONTRACT.md",
+    "docs/PLAN.md"
+  ],
+  "permission": {
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "edit": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "evidence/*": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "ls*": "allow",
+      "pwd": "allow",
+      "grep *": "allow",
+      "cat *": "allow",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git show*": "allow",
+      "git branch*": "allow",
+      "git add*": "allow",
+      "git commit*": "ask",
+      "git push*": "deny",
+      "git reset --hard*": "deny",
+      "git clean*": "deny",
+      "./scripts/verify.sh*": "allow",
+      "./scripts/integration.sh*": "allow",
+      "python -m pytest*": "allow",
+      "python3 -m pytest*": "allow",
+      "npm run build*": "allow",
+      "npm install*": "ask",
+      "pip install*": "ask",
+      "docker compose ps*": "allow",
+      "docker compose logs*": "allow",
+      "docker compose config*": "deny",
+      "docker compose up*": "ask",
+      "docker compose build*": "ask",
+      "docker compose exec*": "ask",
+      "docker compose exec -T backend python -m scripts.seed_data": "allow",
+      "docker compose down*": "ask",
+      "docker compose down -v*": "deny",
+      "curl *": "ask",
+      "rm *": "ask",
+      "rm -rf*": "deny",
+      "sudo *": "deny",
+      "*.env*": "deny",
+      "*.env.example*": "allow"
+    },
+    "webfetch": "ask"
+  }
+}

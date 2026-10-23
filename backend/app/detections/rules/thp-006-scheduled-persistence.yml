@@ -1,0 +1,10 @@
+id: THP-006
+title: Scheduled job created or modified
+description: Cron entries or scheduled tasks changed - often used to keep access after a reboot.
+severity: medium
+lookback_minutes: 15
+conditions:
+  - {field: event.action, in: [cron_modified, scheduled_task_created]}
+group_by: [host.name, user.name]
+mitre: {tactic: Persistence, technique: T1053, name: Scheduled Task/Job}
+tags: [persistence]

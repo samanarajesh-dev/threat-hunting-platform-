@@ -1,0 +1,11 @@
+id: THP-004
+title: Download-and-execute pipeline in a shell command
+description: A command downloads content with curl/wget and pipes it straight into a shell.
+severity: high
+lookback_minutes: 15
+conditions:
+  - {field: process.command_line, contains_any: ["curl ", "wget "]}
+  - {field: process.command_line, contains_any: ["| bash", "| sh", "|bash", "|sh"]}
+group_by: [host.name, user.name]
+mitre: {tactic: Execution, technique: T1059.004, name: Unix Shell}
+tags: [linux, execution]

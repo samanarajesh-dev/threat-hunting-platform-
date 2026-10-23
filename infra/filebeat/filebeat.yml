@@ -1,0 +1,37 @@
+# Filebeat -> Elasticsearch (ingest pipeline "thp-normalize" turns raw lines into THP fields).
+# Verify with:  docker compose run --rm filebeat filebeat test config   and   ... test output
+filebeat.inputs:
+  - type: filestream
+    id: linux-auth
+    paths:
+      - /host/var/log/auth.log     # Debian/Ubuntu
+      - /host/var/log/secure       # RHEL/Fedora
+  - type: filestream
+    id: linux-syslog
+    paths:
+      - /host/var/log/syslog
+      - /host/var/log/messages
+
+processors:
+  # Container hostname is useless for investigations: label events with the real machine name.
+  - add_fields:
+      target: host
+      fields:
+        name: "${HOST_LABEL:lab-linux}"
+  - add_fields:
+      target: event
+      fields:
+        dataset: linux.syslog
+
+output.elasticsearch:
+  hosts: ["${ES_URL:http://elasticsearch:9200}"]
+  username: elastic
+  password: "${ELASTIC_PASSWORD}"
+  index: "thp-events-%{+yyyy.MM.dd}"
+  pipeline: thp-normalize
+
+# We own the index template (the backend installs it), so turn off Filebeat's own template/ILM handling.
+setup.ilm.enabled: false
+setup.template.enabled: false
+setup.template.name: "thp-events"
+setup.template.pattern: "thp-events-*"

@@ -1,0 +1,12 @@
+id: THP-008
+title: Possible port scan
+description: One source touched many distinct destination ports and was blocked by the firewall.
+severity: low
+lookback_minutes: 5
+conditions:
+  - {field: event.category, equals: network}
+  - {field: event.action, equals: connection_denied}
+group_by: [source.ip]
+threshold: {count: 20, distinct: destination.port}
+mitre: {tactic: Discovery, technique: T1046, name: Network Service Discovery}
+tags: [network, scan]

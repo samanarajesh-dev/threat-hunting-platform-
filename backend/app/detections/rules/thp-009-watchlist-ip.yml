@@ -1,0 +1,10 @@
+id: THP-009
+title: Connection to a watch-listed IP address
+description: A host talked to an IP that analysts have flagged as malicious.
+severity: critical
+type: watchlist
+lookback_minutes: 15
+watchlist: {ioc_type: ip, field: destination.ip}
+group_by: [host.name, destination.ip]
+mitre: {tactic: Command and Control, technique: T1071, name: Application Layer Protocol}
+tags: [threat-intel, watchlist]

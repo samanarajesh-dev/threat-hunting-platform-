@@ -1,0 +1,10 @@
+id: THP-010
+title: DNS lookup for a watch-listed domain
+description: A host resolved a domain that analysts have flagged as malicious.
+severity: high
+type: watchlist
+lookback_minutes: 15
+watchlist: {ioc_type: domain, field: dns.question.name}
+group_by: [host.name, dns.question.name]
+mitre: {tactic: Command and Control, technique: T1071.004, name: DNS}
+tags: [threat-intel, watchlist]

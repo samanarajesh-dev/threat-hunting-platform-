@@ -1,0 +1,10 @@
+id: THP-005
+title: New local user account created
+description: Creating accounts is a classic persistence step after initial compromise.
+severity: high
+lookback_minutes: 15
+conditions:
+  - {field: event.action, equals: user_created}
+group_by: [host.name, user.name]
+mitre: {tactic: Persistence, technique: T1136.001, name: Create Account - Local Account}
+tags: [persistence]

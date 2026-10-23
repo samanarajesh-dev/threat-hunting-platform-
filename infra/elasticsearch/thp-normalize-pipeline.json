@@ -1,0 +1,24 @@
+{
+  "description": "THP: normalise sshd / useradd / crontab syslog lines to the THP field contract",
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "ignore_missing": true,
+        "ignore_failure": true,
+        "patterns": [
+          "Failed password for (invalid user )?%{USERNAME:user.name} from %{IP:source.ip} port %{NUMBER:source.port:int}",
+          "Accepted %{WORD:thp.auth_method} for %{USERNAME:user.name} from %{IP:source.ip} port %{NUMBER:source.port:int}",
+          "new user: name=%{USERNAME:user.name}",
+          "\\(%{USERNAME:user.name}\\) BEGIN EDIT"
+        ]
+      }
+    },
+    {
+      "script": {
+        "description": "set event.* from the message type",
+        "source": "if (ctx.message == null) { return; } String m = ctx.message; Map ev = (ctx.event instanceof Map) ? ctx.event : new HashMap(); if (m.contains('Failed password')) { ev.put('category','authentication'); ev.put('outcome','failure'); ev.put('action','ssh_login'); } else if (m.contains('Accepted password') || m.contains('Accepted publickey')) { ev.put('category','authentication'); ev.put('outcome','success'); ev.put('action','ssh_login'); } else if (m.contains('new user: name=')) { ev.put('category','iam'); ev.put('action','user_created'); } else if (m.contains('BEGIN EDIT')) { ev.put('category','configuration'); ev.put('action','cron_modified'); } ctx.event = ev;"
+      }
+    }
+  ]
+}

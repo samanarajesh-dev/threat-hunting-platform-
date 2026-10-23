@@ -1,0 +1,13 @@
+id: THP-002
+title: Successful remote login as a privileged account
+description: A privileged account (root/administrator) authenticated successfully from a remote IP.
+severity: high
+lookback_minutes: 15
+conditions:
+  - {field: event.category, equals: authentication}
+  - {field: event.outcome, equals: success}
+  - {field: user.name, in: [root, administrator]}
+  - {field: source.ip, exists: true}
+group_by: [source.ip, host.name, user.name]
+mitre: {tactic: Initial Access, technique: T1078, name: Valid Accounts}
+tags: [authentication, privileged]

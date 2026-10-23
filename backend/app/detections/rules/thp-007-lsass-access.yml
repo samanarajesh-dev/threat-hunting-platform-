@@ -1,0 +1,11 @@
+id: THP-007
+title: Process accessed LSASS memory
+description: Reading LSASS memory is how credential-dumping tools extract passwords (Sysmon event 10).
+severity: critical
+lookback_minutes: 15
+conditions:
+  - {field: event.code, equals: "10"}
+  - {field: winlog.event_data.TargetImage, endswith: lsass.exe}
+group_by: [host.name, process.name]
+mitre: {tactic: Credential Access, technique: T1003.001, name: LSASS Memory}
+tags: [windows, sysmon, credential-dumping]
